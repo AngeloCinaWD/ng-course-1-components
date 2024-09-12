@@ -8,7 +8,12 @@
 <div class="courses">
   <!-- voglio passare un valore ad una proprietà all'interno del card-component, utilizzo le parentesi quadre per dire che quello che sarà nei doppi apici deve essere inteso come codice javascript -->
   <!-- nel .ts del componente course-card utilizzo il decoratore @input per dire che il valore della proprietà input viene passato dall'esterno -->
-  <course-card [course]="coreCourse"></course-card>
+  <!-- creo un evento custom courseSelected che verrà propagato dal componente course-card e ascoltato dal componente padre app.component (bubbling event) che triggererà il metodo onCardClicked-->
+  <!-- per ricevere il payload dell'evento custom creato in course-card utilizzo la variabile speciale $event -->
+  <course-card
+    (courseSelected)="onCardClicked($event)"
+    [course]="coreCourse"
+  ></course-card>
   <course-card [course]="rxjsCourse"></course-card>
   <course-card [course]="ngrxCourse"></course-card>
 </div>
