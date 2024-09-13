@@ -19,6 +19,15 @@ export class AppComponent {
   // creo una proprietà courses che sarà un array di Course
   courses: Course[] = COURSES;
 
+  startDate = new Date();
+  startDate2 = new Date("2024 09 08"); // creo data con stringa con anno mese giorno
+
+  title = COURSES[0].description;
+
+  price = 9.999934;
+
+  rate = 0.67;
+
   onCardClicked(course: Course) {
     console.log(course);
   }
