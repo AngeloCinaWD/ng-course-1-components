@@ -47,7 +47,7 @@
     [class.is-odd]="disparo"
   />
   } -->
-  @for (course of courses; track course.id;) {
+  <!-- @for (course of courses; track course.id;) {
   <h1>Corso {{ $index + 1 }} di {{ $count }}</h1>
 
   <course-card
@@ -59,18 +59,18 @@
     [class.is-even]="$even"
     [class.is-odd]="$odd"
   />
-  }
+  } -->
   <!-- in caso di lista vuota posso utilizzare @empty che mi permette di visualizzare qualcosa -->
-  @empty {
+  <!-- @empty {
   <h1>No courses found!</h1>
-  }
+  } -->
 
   <!-- la funzione di tracciamento è obbligatoria, nelle versioni precedenti di angular no -->
   <!-- possiamo scrivere noi una funzione di tracciamento nel nostro componente, in questo caso in app.component.ts-->
   <!-- scrivo una funzione che ritorna quello che deve essere utilizzato per il tracciamento e la richiamo nel template -->
   <!-- in genere si preferisce utilizzare la notazione semplificata e non una funzione -->
   <!-- in casi estremi si può utilizzare direttamente la posizione dell'elemento nella lista, track $index, ma non è efficiente per ng -->
-  @for (course of courses; track trackCourse;) {
+  <!-- @for (course of courses; track trackCourse;) {
   <h1>Corso {{ $index + 1 }} di {{ $count }}</h1>
 
   <course-card
@@ -82,5 +82,32 @@
     [class.is-even]="$even"
     [class.is-odd]="$odd"
   />
-  }
+  } -->
+  <!-- *ngFor directive, si può utilizzare sempre, nelle vecchie versioni c'è solo questa -->
+  <!-- in questo caso la direttiva va indicata nel tag di apertura dell'elemento che vogliamo ciclare -->
+  <!-- non è obbligatoria la funzione di tracciamento -->
+  <!-- tutte le opzioni disponibili con l'@for sono disponibili anche qui, cambia la sintassi, non c'è il $ nelle special keys e si utilizza l'as per dare il nome alias da utilizzare, le special keys devono per forza essere definite e bisogna assegnare un as altrimenti non si possono utilizzare nel codice come si può fare con @for -->
+  <!-- altra differenza è che le variabili che definisco nell'@for le posso utilizzare ovunque all'interno dell'@for statement qui le posso utilizzare solo nel componente -->
+  <course-card
+    *ngFor="
+      let course of courses;
+      count as count;
+      index as indice;
+      first as first;
+      last as last;
+      even as even;
+      odd as odd
+    "
+    (courseSelected)="onCardClicked($event)"
+    [course]="course"
+    [count]="count"
+    [indice]="indice"
+    [class.is-first]="first"
+    [class.is-last]="last"
+    [class.is-even]="even"
+    [class.is-odd]="odd"
+  />
+  <!-- per poter aggiornare dalla sintassi ]ngFor a @for si esegue questo comando: ng generate @angular/core:control-flow -->
+  <!-- questa migrazione funziona al 95%, in alcuni casi va fatta a mano -->
+  <!-- funziona per qualsiasi sintassi -->
 </div>

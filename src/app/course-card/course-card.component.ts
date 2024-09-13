@@ -26,6 +26,9 @@ export class CourseCardComponent {
   @Output()
   courseSelected = new EventEmitter<Course>();
 
+  @Input()
+  count: number;
+
   onCourseViewed() {
     // quando clicco emetterò l'evento custom courseSelected e gli passo quello che voglio trasmettere come payload
     this.courseSelected.emit(this.course);
