@@ -64,4 +64,23 @@
   @empty {
   <h1>No courses found!</h1>
   }
+
+  <!-- la funzione di tracciamento è obbligatoria, nelle versioni precedenti di angular no -->
+  <!-- possiamo scrivere noi una funzione di tracciamento nel nostro componente, in questo caso in app.component.ts-->
+  <!-- scrivo una funzione che ritorna quello che deve essere utilizzato per il tracciamento e la richiamo nel template -->
+  <!-- in genere si preferisce utilizzare la notazione semplificata e non una funzione -->
+  <!-- in casi estremi si può utilizzare direttamente la posizione dell'elemento nella lista, track $index, ma non è efficiente per ng -->
+  @for (course of courses; track trackCourse;) {
+  <h1>Corso {{ $index + 1 }} di {{ $count }}</h1>
+
+  <course-card
+    (courseSelected)="onCardClicked($event)"
+    [course]="course"
+    [indice]="$index"
+    [class.is-first]="$first"
+    [class.is-last]="$last"
+    [class.is-even]="$even"
+    [class.is-odd]="$odd"
+  />
+  }
 </div>

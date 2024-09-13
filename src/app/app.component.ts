@@ -22,4 +22,9 @@ export class AppComponent {
   onCardClicked(course: Course) {
     console.log(course);
   }
+
+  // funzione di tracciamento
+  trackCourse(index: number, course: Course) {
+    return course.id;
+  }
 }
