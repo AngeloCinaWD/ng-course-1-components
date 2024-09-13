@@ -41,4 +41,12 @@ export class CourseCardComponent {
   checkIconUrl() {
     return this.course.iconUrl;
   }
+
+  isBeginner() {
+    return this.course.category === "BEGINNER";
+  }
+
+  checkCategory() {
+    return `${this.course.category.toLowerCase()}`;
+  }
 }

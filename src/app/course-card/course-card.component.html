@@ -1,5 +1,10 @@
 <!-- utilizzo l'*ngIf per controllare se il corso esiste o no -->
-<div class="course-card" *ngIf="course">
+<!-- CONDITIONAL STYLE -->
+<!-- per assegnare una classe css secondo una condizione utilizzo la direttiva [ngClass] alla quale posso passare una stringa tra singoli apici con il nome delle classi, es. [ngClass]="'beginner course-card'", oppure un array di stringhe ['beginner', 'course-card'] -->
+<!-- ngClass è pensato per assegnare style secondo condizioni, posso passare un oggetto con il nome delle classi e la condizione [ngClass]="{ beginner: true }"-->
+<!-- o definendo un metodo che mi restituisca un booleano -->
+<!-- o definendo un metodo che mi restituisca il nome delle classi come stringhe o array di stringhe, [ngClass]="checkCategory()" -->
+<div class="course-card" *ngIf="course" [ngClass]="checkCategory()">
   <!-- CONDITIONAL RENDERING -->
   <!-- direttiva @if, mi permette di renderizzare qualcosa a seconda se una condizione è rispettata o meno -->
   <!-- in questo caso sto mostrando il div solo se l'indice è disparo, quindi dividendo per 2 dà il resto -->
