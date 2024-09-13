@@ -19,7 +19,7 @@ export const COURSES: any = [
     iconUrl: "",
     longDescription:
       "Understand the RxJs Observable pattern, learn the RxJs Operators via practical examples",
-    category: "BEGINNER",
+    category: "UNKNOWN",
     lessonsCount: 10,
   },
 
