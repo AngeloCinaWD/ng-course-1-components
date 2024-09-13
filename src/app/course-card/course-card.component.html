@@ -72,8 +72,31 @@
 
     <div *ngSwitchCase="'ADVANCED'" class="category">Advanced</div>
 
-    <div *ngSwithDefault class="category">No Category</div>
+    <div *ngSwitchDefault class="category">No Category</div>
   </div>
+
+  <!-- NG-CONTAINER -->
+  <!-- come visto per applicare le vecchie direttive come *ngFor, o [ngSwitch] ho bisogno di un elemento padre -->
+  <!-- non è sempre possibile, potrei creare un div che racchiude tutto ma non vanno creati elementi extra per wrappare solo per applicare una direttiva -->
+  <!-- si utilizza invece il tag ng-container -->
+  <ng-container [ngSwitch]="course.category">
+    <div class="course-category">
+      <ng-container *ngSwitchCase="'BEGINNER'">
+        <div class="category">Beginner</div>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="'INTERMEDIATE'">
+        <div class="category">Intermediate</div>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="'ADVANCED'">
+        <div class="category">Advanced</div>
+      </ng-container>
+      <ng-container *ngSwitchDefault>
+        <div class="category">No Category</div>
+      </ng-container>
+    </div>
+  </ng-container>
 
   <!-- si può utilizzare anche una funzione per definire la condizione dell'if -->
   <!-- per definire un'alternativa utilizzo la special key else facendo riferimento ad un blocco di codice contenuto in un ng-template che va contrassegnato con una template reference -->
