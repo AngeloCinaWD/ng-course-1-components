@@ -33,4 +33,12 @@ export class CourseCardComponent {
     // quando clicco emetterò l'evento custom courseSelected e gli passo quello che voglio trasmettere come payload
     this.courseSelected.emit(this.course);
   }
+
+  buttonIsVisible() {
+    return this.course.id === 1 || this.course.id === 5;
+  }
+
+  checkIconUrl() {
+    return this.course.iconUrl;
+  }
 }
