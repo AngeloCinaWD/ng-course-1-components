@@ -12,8 +12,10 @@ export const COURSES: any = [
   {
     id: 2,
     description: "RxJs In Practice Course",
-    iconUrl:
-      "https://s3-us-west-1.amazonaws.com/angular-university/course-images/rxjs-in-practice-course.png",
+    // iconUrl:
+    //   "https://s3-us-west-1.amazonaws.com/angular-university/course-images/rxjs-in-practice-course.png",
+
+    iconUrl: "",
     longDescription:
       "Understand the RxJs Observable pattern, learn the RxJs Operators via practical examples",
     category: "BEGINNER",

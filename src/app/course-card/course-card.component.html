@@ -1,7 +1,30 @@
 <div class="course-card">
-  <div class="course-title">{{ indice + 1 }}/{{ count }}</div>
+  <!-- CONDITIONAL RENDERING -->
+  <!-- direttiva @if, mi permette di renderizzare qualcosa a seconda se una condizione è rispettata o meno -->
+  <!-- in questo caso sto mostrando il div solo se l'indice è disparo, quindi dividendo per 2 dà il resto -->
+  @if (indice%2 > 0) {
+  <div class="course-title">
+    Corso {{ indice + 1 }}/{{ count }}, indice disparo: {{ indice }}
+  </div>
+  }
+  <!-- direttiva @else, mi permette di stabilire un'alternativa -->
+  @else {
+  <div class="course-title">
+    Corso {{ indice + 1 }}/{{ count }}, indice paro: {{ indice }}
+  </div>
+  }
+
   <div class="course-title">{{ course.description }}</div>
+
+  <!-- utilizzo @if, @else if, @else -->
+  <!-- la condizione nell'else if restituisce false sia se la proprietà è null, undefined o anche stringa vuota -->
+  @if (course.id === 1 || course.id === 3) {
+  <h1>corso con id 1 0 3</h1>
+  } @else if (course.iconUrl) {
   <img width="300" alt="Angular Logo" [src]="course.iconUrl" />
+  } @else {
+  <h1>Nessuna immagine disponibile</h1>
+  }
 
   <div class="course-description">
     {{ course.longDescription }}
