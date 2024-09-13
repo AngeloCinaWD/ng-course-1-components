@@ -49,4 +49,16 @@ export class CourseCardComponent {
   checkCategory() {
     return `${this.course.category.toLowerCase()}`;
   }
+
+  textDecoration() {
+    return "underline";
+  }
+
+  checkTextStyle() {
+    return {
+      color: this.course.id === 1 ? "yellow" : "black",
+      "text-decoration":
+        this.course.category !== "BEGINNER" ? "underline" : "no",
+    };
+  }
 }

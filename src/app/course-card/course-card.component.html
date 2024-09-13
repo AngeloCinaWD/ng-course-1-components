@@ -23,7 +23,13 @@
   <!-- ELVIS OPERATOR -->
   <!-- se non controllo se il corso esiste avrò un errore ad esempio per ricavare course.description, per evitarlo posso dire ad ng di verificare la proprietà solo se esiste il corso -->
   <!-- lo faccio utilizzando l'Elvis operator, il punto interrogativo prima del dot della notation -->
-  <div class="course-title">{{ course?.description }}</div>
+  <!-- NG STYLE -->
+  <!-- assegnare direttamente style css tramite condizioni -->
+  <!-- direttiva style.nomeproprietàcss="'valore'" mi permette di applicare un singolo style alla volta-->
+  <!-- con [ngStyle] posso passare un oggetto con proprietà e valore, anche richiamando una propretà nel .ts o un metodo, [ngStyle]="{ 'text-decoration': 'underline' }", [ngStyle]="{ 'text-decoration': textDecoration() }" -->
+  <div class="course-title" [ngStyle]="checkTextStyle()">
+    {{ course?.description }}
+  </div>
 
   <!-- utilizzo @if, @else if, @else -->
   <!-- la condizione nell'else if restituisce false sia se la proprietà è null, undefined o anche stringa vuota -->
