@@ -5,6 +5,17 @@
   />
 </div>
 
+<!-- VIEW CHILD DECORATOR E VIEW CHILDREN -->
+<!-- permettono di creare riferimenti ad elementi del template nel .ts, per ottenere delle query dal modello -->
+
+<div class="courses">
+  <course-card
+    (courseSelected)="onCardClicked($event)"
+    [course]="courses[0]"
+    [indice]="courses[0].id"
+  />
+</div>
+
 <!--ANGULAR PIPES -->
 <!-- si utilizzano nel template per manipolare la visualizzazione dei dati -->
 

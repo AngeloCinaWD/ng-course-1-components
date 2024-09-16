@@ -1,6 +1,7 @@
-import { Component } from "@angular/core";
+import { Component, ViewChild } from "@angular/core";
 import { COURSES } from "../db-data";
 import { Course } from "./model/course";
+import { CourseCardComponent } from "./course-card/course-card.component";
 
 @Component({
   selector: "app-root",
@@ -28,8 +29,19 @@ export class AppComponent {
 
   rate = 0.67;
 
+  // Per ottenere una reference ad un elemento nel template abbiamo bisogno del decoratore @ViewChild()
+  // all'interno delle parentesi va definito come vogliamo ottenere la reference
+  // passando il nome della classe del componente la variabile verrà popolata con un riferimento all'istanza del compoennte
+  // il riferimento in questo modo viene associato al primo CourseCardComponent presente nel template, infatti se clicco su uno qualsiasi degli altri componenti vedo che in card c'è sempre il primo course
+  @ViewChild(CourseCardComponent)
+  card: CourseCardComponent;
+
   onCardClicked(course: Course) {
     console.log(course);
+    // facendi il console log di card ottengo un riferimento ad una istanza del componente
+    // le proprietà sono course, indice e count che ora non c'è perchè non è definita per questo compoennte
+    // posso vedere tutte le sue prorietà e l'evento emesso (in questo caso courseSelected)
+    console.log(this.card);
   }
 
   // funzione di tracciamento
