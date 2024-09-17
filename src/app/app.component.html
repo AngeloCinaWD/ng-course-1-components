@@ -7,12 +7,21 @@
 
 <!-- VIEW CHILD DECORATOR E VIEW CHILDREN -->
 <!-- permettono di creare riferimenti ad elementi del template nel .ts, per ottenere delle query dal modello -->
-
-<div class="courses">
+<!-- template reference ad un elemento che ne contiene altri -->
+<div class="courses" #container>
   <course-card
     (courseSelected)="onCardClicked($event)"
     [course]="courses[0]"
     [indice]="courses[0].id"
+  />
+
+  <!-- VIEW CHILD DECORATOR E VIEW CHILDREN -->
+  <!-- posso interrogare un elemento nel template dandogli un nome tramite TEMPLATE REFERENCE ed interrogarlo nel .ts-->
+  <course-card
+    #cardRef
+    (courseSelected)="onCardClicked($event)"
+    [course]="courses[4]"
+    [indice]="courses[4].id"
   />
 </div>
 
