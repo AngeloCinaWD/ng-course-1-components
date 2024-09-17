@@ -1,4 +1,11 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from "@angular/core";
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  QueryList,
+  ViewChild,
+  ViewChildren,
+} from "@angular/core";
 import { COURSES } from "../db-data";
 import { Course } from "./model/course";
 import { CourseCardComponent } from "./course-card/course-card.component";
@@ -53,6 +60,18 @@ export class AppComponent implements AfterViewInit {
   @ViewChild("cardRef", { read: ElementRef })
   collegamentoHTML: ElementRef;
 
+  // VIEWCHILDREN DECORATOR
+  // invece di permettere di interrogare un solo elemento della pagina permette di interrogare un insieme di elementi correlati
+  // lo utilizziamo per esempio su un ngFor
+  // restituisce una QueryList, un array di qualcosa, nel nostro caso di CourseCardComponent
+  // i valori emessi sono istanze di COureCardComponent
+  @ViewChildren(CourseCardComponent)
+  courseCards: QueryList<CourseCardComponent>;
+
+  // per ottenere una querylist di elementi html devo indicarlo tramite oggetto nel decoratore, proprietà read e cambiare il tipo alla proprietà come ElementRef
+  @ViewChildren(CourseCardComponent, { read: ElementRef })
+  coursecardsElementRef: QueryList<ElementRef>;
+
   constructor() {
     // le variabili con decoratore @ViewChild() non sono popolate nel costruttore
     // ottengo infatti un undefined
@@ -65,6 +84,34 @@ export class AppComponent implements AfterViewInit {
     //Add 'implements AfterViewInit' to the class.
     // a quanto pare in ng18 posso anche non implementare l'interfaccia per il lifecycle hook
     console.log(this.card);
+
+    // log della querylist ottenuta con il viewchildren decorator
+    // una querylist ci mette a disposizione una serie di proprietà e metodi per interrogare gli elementi in essa contenuti
+    console.log(this.courseCards);
+    // ad esempio la proprietà first ci restituisce il primo elemento della collection, last l'ultimo
+    console.log(this.courseCards.first);
+    // ci sono altre proprietà come length
+    console.log(this.courseCards.length);
+    // map, foreach, filter metodi degli array classici
+    // importante è la pòroprietà changes, un observable al quale ci dobbiamo sottoscrivere e che emetterà più valori nel tempo, ogni volta che la collection viene modificata
+    // al subbscribe passiamo una funzione che verrà eseguita ogni volta che c'è un cambiamento, solo se c'è un cambiamento nello state
+    // per fare una prova aggiungo un button nel template per aggiungere un corso
+    // funziona solo se il riferimento del viewchildren è il tipo di componente, se ci metto una template reference non triggera, ho riferimenti all'html
+    this.courseCards.changes.subscribe((cards) => console.log(cards));
+  }
+
+  aggiungiCorso() {
+    console.log(this.courseCards.last);
+    this.courses.push({
+      id: 1,
+      description: "Angular core deep dive",
+      iconUrl:
+        "https://s3-us-west-1.amazonaws.com/angular-university/course-images/angular-core-in-depth-small.png",
+      longDescription:
+        "A detailed walk-through of the most important part of Angular - the Core and Common modules",
+      category: "INTERMEDIATE",
+      lessonsCount: 10,
+    });
   }
 
   // per interrogare elementi nativi del DOM, pieno html, utilizzo il tipo ElementRef

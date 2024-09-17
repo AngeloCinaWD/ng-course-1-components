@@ -5,6 +5,11 @@
   />
 </div>
 
+<!-- BUTTON PER LA PROVA DEL CHANGES PER IL DECOARATOR @VIEWCHILDREN() -->
+<div class="courses">
+  <button (click)="aggiungiCorso()">Aggiungi Corso</button>
+</div>
+
 <!-- VIEW CHILD DECORATOR E VIEW CHILDREN -->
 <!-- permettono di creare riferimenti ad elementi del template nel .ts, per ottenere delle query dal modello -->
 <!-- template reference ad un elemento che ne contiene altri -->
@@ -113,6 +118,8 @@
   ></course-card> -->
 <!-- commento i singoli componenti e li mostrerò utilizzando la direttiva @for -->
 <!-- </div> -->
+
+<!-- VIEWCHILDREN DECORATOR -->
 <div class="courses">
   <!-- il componente può essere chiuso senza il tag di chiusura, aggiungendo / -->
   <!-- il for loop deve avere una track expression è obbligatoria, serve per dire ad angular cosa cambia nei dati, ad esempio aggiungo o elimino un corso ed andrà a modificare solo il nuovo, quindi un modo di identificare ogni singolo elemento, utilizzo l'id del course -->
