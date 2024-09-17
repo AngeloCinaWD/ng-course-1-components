@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from "@angular/core";
+import { AfterViewInit, Component, ElementRef, ViewChild } from "@angular/core";
 import { COURSES } from "../db-data";
 import { Course } from "./model/course";
 import { CourseCardComponent } from "./course-card/course-card.component";
@@ -8,7 +8,7 @@ import { CourseCardComponent } from "./course-card/course-card.component";
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"],
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
   // ognuna di queste proprietà è un oggetto che può essere utilizzato nel template del componente, quindi in app.component.html
   // coreCourse = COURSES[0];
 
@@ -33,6 +33,8 @@ export class AppComponent {
   // all'interno delle parentesi va definito come vogliamo ottenere la reference
   // passando il nome della classe del componente la variabile verrà popolata con un riferimento all'istanza del compoennte
   // il riferimento in questo modo viene associato al primo CourseCardComponent presente nel template, infatti se clicco su uno qualsiasi degli altri componenti vedo che in card c'è sempre il primo course
+  // questo decoratore non permette di compiere query profonde nell'elemento, ad esempio se mettessi un riferimento all'interno del course-card component, ad esempio al tag img, otterrei un undefined
+  // non è possibile con questo decorator interrogare elementi all'interno del componente
   @ViewChild(CourseCardComponent)
   card: CourseCardComponent;
 
@@ -50,6 +52,20 @@ export class AppComponent {
   // la proprietà read è di default istance
   @ViewChild("cardRef", { read: ElementRef })
   collegamentoHTML: ElementRef;
+
+  constructor() {
+    // le variabili con decoratore @ViewChild() non sono popolate nel costruttore
+    // ottengo infatti un undefined
+    // le variabili sono disponibili tramite Lifecycle Hook AfteerViewInit
+    console.log(this.card);
+  }
+
+  ngAfterViewInit(): void {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
+    // a quanto pare in ng18 posso anche non implementare l'interfaccia per il lifecycle hook
+    console.log(this.card);
+  }
 
   // per interrogare elementi nativi del DOM, pieno html, utilizzo il tipo ElementRef
 
